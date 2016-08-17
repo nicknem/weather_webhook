@@ -1,7 +1,8 @@
 require('dotenv').config();
 var express = require('express');
 var app = express();
-var openweatherKey = process.env.OPENWEATHER_KEY;
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
@@ -18,6 +19,16 @@ app.listen(3000, function() {
 
 // It gets location from Motion.AI
 
-var getCurrentWeather = function(uri, location) {
+var baseURI = 'api.openweathermap.org/data/2.5/weather?q=';
+var getCurrentWeather = function(uri, query) {
   // Call weather API
+  var uri = baseURI + query;
+  var openweatherKey = process.env.OPENWEATHER_KEY;
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", uri, false);
+  xhr.send();
+  console.log(xhr.status);
+  console.log(xhr.stautsText);
 };
+
+console.log(getCurrentWeather(baseURI, "Paris"));
