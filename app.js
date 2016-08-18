@@ -13,7 +13,8 @@ app.get('/webhook', function(req, res) {
   uri = "http://www.infoclimat.fr/public-api/gfs/json?_ll=48.85341,2.3488&_auth=AxkDFFMtVHYEKQcwAHYLIlgwBzIKfAIlAX1RMl04AH0JYlY3Dm4HYVc5UC0PIAM1AC0HZA02BDQCaVEpWCpfPgNpA29TOFQzBGsHYgAvCyBYdgdmCioCJQFqUTRdLgBhCWlWNg5zB2RXOlA1DyEDNgA2B2MNLQQjAmBRMlgyXz0DZQNnUzVUMwRpB2MALwsgWG4HYApnAj8BZFEyXTcAZQlvVjUOOAc2V2lQNw8hAzQANwdmDTUEPwJpUTBYMF8jA38DHlNDVCsEKwcnAGULeVh2BzIKawJu&_c=4b9f518e8ed378f74c951c21f0fae953"
   request.get(uri, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      console.log(body) // Print the google web page.
+      console.log(body);
+      res.send(body); // Print the data
     }
     else {
       console.log(response.statusCode, body);
