@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 var request = require('request');
 
+app.listen(3000, function() {
+  console.log("Listening on port 3000!");
+});
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
@@ -21,9 +24,6 @@ app.get('/webhook', function(req, res) {
   })
 })
 
-app.listen(3000, function() {
-  console.log("Listening on port 3000!");
-});
 
 // Setup a server with a controller to listen to the webhook you set up on Motion AI
 // Call the OpenWeatherMap API
