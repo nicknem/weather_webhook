@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 app.get('/webhook', function(req, res) {
   getWeather().then(function(data){
       var weather = data.weather[0].main;
-      res.send({"text":weather})
+      res.send({"weather":weather})
       // res.send(data);
   });
 })
