@@ -19,8 +19,10 @@ app.get('/', function (req, res) {
 });
 
 app.get('/webhook', function(req, res) {
-  getWeather().then(function(weatherData){
-      console.log(weatherData);
+  getWeather().then(function(data){
+      var weather = data.weather[0].main;
+      res.send({"text":weather})
+      // res.send(data);
   });
 })
 
@@ -34,7 +36,6 @@ function getWeather() {
         resolve(JSON.parse(body));
       }
       else {
-        // console.log(response.statusCode, body);
         reject(error);
       }
     });
