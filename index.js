@@ -18,17 +18,20 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-app.post('/webhook', function(req, res) {
-  getWeather().then(function(data){
+// Answer the webhook with the current weather
+app.post('/webhook/:city', function(req, res) {
+  // Get city from params
+  var city = req.params.city;
+  getWeather(city).then(function(data){
       var weather = data.weather[0].main;
       res.send({"weather":weather})
       // res.send(data);
   });
 })
-
-function getWeather() {
+// Get current weather for Paris
+function getWeather(location) {
   return new Promise(function(resolve, reject){
-    let query="Paris"
+    let query = location;
     let uri = `http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${process.env.OPENWEATHER_API_KEY}`;
     // Send the request and process the data
     request.get(uri, function (error, response, body) {
