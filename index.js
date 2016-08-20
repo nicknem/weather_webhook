@@ -26,7 +26,7 @@ app.get('/', function (req, res) {
 app.post('/webhook/:city', function(req, res) {
   // Get city from params
   var city = req.params.city;
-  console.log(req.body);
+  console.log(req);
   getWeather(city).then(function(data){
       var weather = data.weather[0].main;
       res.send({"weather":weather})
