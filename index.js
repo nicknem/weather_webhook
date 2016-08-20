@@ -17,20 +17,21 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-// so on the module where it asks for the city, you'd have a webhook that takes
+// On the module that asks for the city, have a webhook that takes
 // the value of `reply` and responds to our request with `{"city":$reply}`
 // where `$reply` = the variable that was passed in as `reply`
 // at that point our system would ingest the custom var `city`
 
 // Answer the webhook with the current weather
-app.post('/webhook/:city', function(req, res) {
+app.post('/webhook/', function(req, res) {
   // Get city from params
+  var entries = req.body.entry;
+  console.log(entries);
   var city = req.params.city;
-  console.log(req);
-  getWeather(city).then(function(data){
-      var weather = data.weather[0].main;
-      res.send({"weather":weather})
-  });
+  // getWeather(city).then(function(data){
+  //     var weather = data.weather[0].main;
+  //     res.send({"weather":weather})
+  // });
 })
 
 // Get current weather for Paris
