@@ -35,7 +35,10 @@ app.post('/webhook/', function(req, res) {
   var city = req.body.reply;
   getWeather(city).then(function(data){
       var weather = data.weather[0].main;
-      res.send({"weather":weather})
+      res.send({
+        "weather":weather,
+        "city" :city
+      })
   });
 })
 
