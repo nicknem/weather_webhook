@@ -6,8 +6,8 @@ var request = require('request');
 var rp = require('request-promise');
 
 // Parsing Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
 var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
