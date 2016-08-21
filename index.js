@@ -2,6 +2,7 @@
 require('dotenv').config();
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser')
 var request = require('request');
 var rp = require('request-promise');
 
@@ -31,6 +32,15 @@ app.post('/webhook/', function(req, res) {
       var weather = data.weather[0].main;
       res.send({"weather":weather})
   });
+})
+
+app.get('webhook', function(req, res) {
+  if (!error && response.statusCode == 200) {
+    res.send("This is the webhook")
+  }
+  else {
+    reject(error);
+  }
 })
 
 // Get current weather for Paris
