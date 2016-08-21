@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
 // Answer the webhook with the current weather
 app.post('/webhook/', function(req, res) {
   // Get city from body
-  console.log(req.body);
+  console.log(req.body.reply);
   var city = req.body.reply;
   getWeather(city).then(function(data){
       var weather = data.weather[0].main;
