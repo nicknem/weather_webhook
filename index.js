@@ -2,9 +2,14 @@
 require('dotenv').config();
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser')
 var request = require('request');
 var rp = require('request-promise');
+
+// Parsing Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+var bodyParser = require('body-parser');
+// parse application/json
+app.use(bodyParser.json());
 
 // Setup a server with a controller to listen to the webhook you set up on Motion AI
 // Call the OpenWeatherMap API
