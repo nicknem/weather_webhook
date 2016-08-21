@@ -25,12 +25,12 @@ app.get('/', function (req, res) {
 // Answer the webhook with the current weather
 app.post('/webhook/', function(req, res) {
   // Get city from params
-  console.log(req);
-  var city = req.params.city;
-  // getWeather(city).then(function(data){
-  //     var weather = data.weather[0].main;
-  //     res.send({"weather":weather})
-  // });
+  // var city = req.params.city;
+  var city = req.body.reply;
+  getWeather(city).then(function(data){
+      var weather = data.weather[0].main;
+      res.send({"weather":weather})
+  });
 })
 
 // Get current weather for Paris
