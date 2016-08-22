@@ -19,17 +19,17 @@ app.post('/webhook/location/', function(req, res) {
   console.log(req.body);
   var city = req.body.reply;
   getWeather(city).then(function(data){
-      var weather = data.weather[0].main;
-      res.send({
-        "weather":weather,
-        "city" :city
-      })
+    var tempKelvin= data.main.temp;
+    var tempCelsius = Math.floor(tempKelvin - 273.15);
+    var weather = (data.weather[0].main).toLowerCase();
+    var description = data.weather[0].description;
+    res.send({
+      "weather":weather,
+      "temperature":tempCelsius,
+      "description":description,
+      "city" :city
+    })
   });
-})
-
-// Answer the webhook with the current weather
-app.post('/webhook/', function(req, res) {
-  console.log(req);
 })
 
 // Get current weather
@@ -48,4 +48,12 @@ function getWeather(location) {
     });
   })
 };
-
+app.get("/", function(req, res) {
+  getWeather("Paris").then(function(data) {
+    var tempKelvin= data.main.temp;
+    var tempCelsius = Math.floor(tempKelvin - 273.15);
+    var weather = (data.weather[0].main).toLowerCase();
+    var description = data.weather[0].description;
+    console.log(`The weather is ${weather} with a ${description}. The temperature is ${tempCelsius} degrees Celsius.`);
+  });
+})
