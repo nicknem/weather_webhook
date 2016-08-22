@@ -16,6 +16,7 @@ app.listen(process.env.PORT || 5000, function() {
 
 // Answer the webhook with the current weather
 app.post('/webhook/', function(req, res) {
+  console.log(req.body);
   var city = req.body.reply;
   getWeather(city).then(function(data){
       var weather = data.weather[0].main;
