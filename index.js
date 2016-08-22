@@ -29,7 +29,7 @@ app.post('/webhook/location/', function(req, res) {
 
 // Answer the webhook with the current weather
 app.post('/webhook/', function(req, res) {
-  console.log(req.body);
+  console.log(req);
 })
 
 // Get current weather
