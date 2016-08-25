@@ -16,7 +16,7 @@ app.listen(process.env.PORT || 5000, function() {
 
 // Answer the webhook with the current weather
 app.post('/webhook/location/', function(req, res) {
-  console.log(req.body);
+  console.log(req.body.result); //print the extracted data
   var city = req.body.reply;
   getWeather(city).then(function(data){
     var tempKelvin= data.main.temp;
